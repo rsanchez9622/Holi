@@ -9,10 +9,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toolbar;
 
 import com.example.primeraapp.Fragments.MainFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -21,6 +27,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
+    private ArrayList<String> lista;
+    private ArrayAdapter<String> adapter;
+    private ListView list;
+    private Button boton;
+    private EditText editar;
+
 
 
     @Override
@@ -44,6 +57,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, new MainFragment());
         fragmentTransaction.commit();
+
+        list = (ListView) findViewById(R.id.list);
+        boton = (Button) findViewById(R.id.boton);
+        editar = (EditText) findViewById(R.id.editar);
+
+        lista = new ArrayList<>();
+        lista.add("Arroz");
+        lista.add("Fideos");
+        lista.add("Atun");
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista);
+
+        list.setAdapter(adapter);
+
+
+
+
 
     }
 
